@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충남 유·초등 교사 전보 점수 계산기 (2026학년도)</title>
+<title>충남 유·초등 교사 전보 점수 계산기</title>
 <style>
   :root{
     --blue:#1e5fa8; --blue-d:#164a85; --bg:#f4f6fa; --card:#ffffff;
@@ -35,11 +35,13 @@
   .btn-del{background:#fbe9e9; color:#b03a3a; border:none; border-radius:6px; padding:5px 9px; font-size:12.5px;}
   .g-item{border:1px solid #edf0f5; border-radius:10px; padding:10px 12px; margin-bottom:8px; background:#fbfcfe;}
   .g-item.extra{border-color:#e3d29a; background:#fffdf3;}
+  .g-item.new27{border-color:#bcd8b8; background:#f7fcf5;}
   .g-head{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
   .g-head .no{background:var(--blue); color:#fff; font-size:12px; border-radius:6px; padding:1px 7px; flex-shrink:0;}
   .g-head .name{font-weight:bold; font-size:14.5px;}
   .g-head .cap{font-size:12px; color:var(--sub);}
   .g-head .pts{margin-left:auto; font-weight:bold; color:var(--blue); font-size:15px;}
+  .g-head .tagnew{font-size:11px; background:#2e7d32; color:#fff; border-radius:10px; padding:1px 8px;}
   .g-body{margin-top:8px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-size:13.5px; color:#3d4a5c;}
   .g-note{width:100%; font-size:12px; color:var(--sub);}
   .sticky{position:fixed; left:0; right:0; bottom:0; background:var(--blue-d); color:#fff; padding:12px 16px; box-shadow:0 -3px 12px rgba(0,0,0,.18); z-index:50;}
@@ -67,13 +69,13 @@
 
 <header>
   <h1>충남 유·초등 교사 전보 점수 계산기</h1>
-  <p>2026학년도 인사관리원칙 기준 · 작성기준일 2026.2.28. ·
-  <span data-mode="out">충청남도교육청 (시·군 간 전보)</span><span data-mode="in">천안교육지원청 (천안 관내 전보)</span></p>
+  <p data-mode="out">2027학년도 충청남도교육청 인사관리원칙(2026.7.) 기준 · 시·군 간 전보 · 작성기준일 2027.2.28.</p>
+  <p data-mode="in">2026학년도 천안교육지원청 인사관리원칙 기준 · 천안 관내 전보 · 작성기준일 2026.2.28.</p>
 </header>
 
 <div class="mode-tabs">
-  <button id="tabOut" class="on" onclick="setMode('out')">관외 전보 (시·군 간)<small>충남도교육청 인사관리원칙 제29조</small></button>
-  <button id="tabIn" onclick="setMode('in')">관내 전보 (천안 시내)<small>천안교육지원청 인사관리원칙 제20조</small></button>
+  <button id="tabOut" class="on" onclick="setMode('out')">관외 전보 (시·군 간)<small>2027학년도 도 원칙 제29조</small></button>
+  <button id="tabIn" onclick="setMode('in')">관내 전보 (천안 시내)<small>2026학년도 천안 원칙 제20조</small></button>
 </div>
 
 <div class="warn">
@@ -81,14 +83,18 @@
   가산점·부가점 합계는 <b>10점 초과 불가</b>, 최근 5년 이내
   <b><span data-mode="out">현임 시·군</span><span data-mode="in">현임교</span></b> 실적만 인정됩니다.
   <span data-mode="in">단, 교육력 제고 학교 추가 가산점(상한 3점)은 10점과 별도로 합산됩니다.</span>
-  <span data-mode="in"><br>※ 관내 전보는 타 시·군 관내 원칙과 다릅니다. 이 탭은 <b>천안</b> 기준입니다.</span>
+  <span data-mode="in"><br>※ 천안 관내 탭은 2026학년도 원칙 기준입니다. 2027학년도 천안 관내 원칙이 공개되면 갱신이 필요합니다.</span>
 </div>
 
 <!-- ① 교육경력 평정점 -->
 <div class="card">
-  <h2>① 교육경력 평정점 <span class="badge">최근 5년 (2021.3.1.~2026.2.28.)</span></h2>
+  <h2>① 교육경력 평정점
+    <span class="badge" data-mode="out">최근 5년 (2022.3.1.~2027.2.28.)</span>
+    <span class="badge" data-mode="in">최근 5년 (2021.3.1.~2026.2.28.)</span>
+  </h2>
   <p class="desc" data-mode="out">근무 기간별로 행을 추가하세요. 2023.2.28. 이전/이후 환산점 표가 다릅니다.
-  직위해제·정직·휴직·연수파견 기간 제외(육아휴직 자녀당 최초 1년은 소속교 평정점, 이외 육아휴직은 '1년 2.0' 선택).</p>
+  직위해제·정직·휴직·연수파견 기간 제외(육아휴직 자녀당 최초 1년은 소속교 평정점, 이외 육아휴직은 '1년 2.0' 선택).
+  늘봄지원실장은 소속학교, 그 외 임기제교육전문직원은 근무 기관 소재 지역의 일반학교 평정점 적용.</p>
   <p class="desc" data-mode="in">근무 학교의 급지별로 행을 추가하세요(별표2 급지점). 직위해제·정직·휴직·연수파견 기간 제외.
   육아휴직 자녀당 최초 1년은 소속교 급지점, 이외 육아휴직·타시도 파견은 '1년 1.0' 선택. 기관파견은 원적학교 급지점 적용.</p>
   <div id="careerRows"></div>
@@ -116,7 +122,7 @@
     <div class="dt-body">
       <table>
         <tr><th>급지</th><th>대상</th><th>급지점(1년)</th></tr>
-        <tr><td>가</td><td>천안 시내 대부분 학교·병설 외 유치원, 특수교육팀 근무교사</td><td>2.0</td></tr>
+        <tr><td>가</td><td>천안 시내 대부분 학교·유치원, 특수교육팀 근무교사</td><td>2.0</td></tr>
         <tr><td>나</td><td>천안부대, 천안업성, 삼은, 성거, 소망, 안서, 신계, 천안부영, 신흥, 천안인애학교</td><td>1.8</td></tr>
         <tr><td>다</td><td>목천, 병천, 풍세, 광덕, 신사, 수신, 입장, 성신, 양대, 양당, 직산, 성환</td><td>1.6</td></tr>
         <tr><td>라</td><td>도장, 미죽, 은석, 용정, 행정, 보산원, 성남, 천동, 대홍, 도하, 신방, 신가</td><td>1.4</td></tr>
@@ -155,7 +161,7 @@
       <div id="awardRows"></div>
       <button class="btn-add" style="margin-top:6px" onclick="addAwardRow()">＋ 입상 실적 추가</button>
       <div class="g-note" style="margin-top:6px">
-        <span data-mode="out">전국 1·2·3등급 3.0/2.5/2.0점, 시·도 2.0/1.5/1.0점.</span>
+        <span data-mode="out">전국 1·2·3등급 3.0/2.5/2.0점, 시·도 2.0/1.5/1.0점. 충남장애인체육대회는 2027.3.1. 이후 실적부터 인정.</span>
         <span data-mode="in">전국 1·2·3등급 3.0/2.5/2.0점, 도 2.0/1.5/1.0점, 시·군 1.5/1.0/0.5점.</span>
         동학년도 체육·학예 각 1개씩만 인정 · 2025.2.28.까지 실적 상한 10점, 2025.3.1. 이후 실적부터 상한 6점 · 지도실적과 표창 중복 불허
       </div>
@@ -168,63 +174,93 @@
     <div class="g-body">표창 <input type="number" id="i2" min="0" value="0" oninput="calcAll()"> 회 × 1점 <span class="g-note">동학년도 중에는 한 개만 인정</span></div>
   </div>
 
-  <!-- 3~15 공통 -->
+  <!-- 3 -->
   <div class="g-item"><div class="g-head"><span class="no">3</span><span class="name">복식학급·통합학급 담당</span><span class="cap">상한 3.0 · 중복인정 가능</span><span class="pts" id="p3">0.0</span></div>
-    <div class="g-body">담당 경력 <input type="number" id="i3" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">6개월에 0.5점</span></div></div>
+    <div class="g-body">담당 경력 <input type="number" id="i3" min="0" value="0" oninput="calcAll()"> 개월
+    <span class="g-note">6개월에 0.5점<span data-mode="out"> · 재택순회교육 통합학급은 2026.3.1.자 근무경력부터 제외</span></span></div></div>
 
+  <!-- 4 -->
   <div class="g-item"><div class="g-head"><span class="no">4</span><span class="name">순회교육·재택교육<span data-mode="in">·복지원 파견</span></span><span class="cap">상한 2.5</span><span class="pts" id="p4">0.0</span></div>
     <div class="g-body">담당 경력 <input type="number" id="i4" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">1년에 0.5점</span></div></div>
 
+  <!-- 5 -->
   <div class="g-item"><div class="g-head"><span class="no">5</span><span class="name">영재교육 강사</span><span class="cap">상한 1.5</span><span class="pts" id="p5">0.0</span></div>
-    <div class="g-body">강사 경력 <input type="number" id="i5" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">1년에 0.5점</span></div></div>
+    <div class="g-body">강사 경력 <input type="number" id="i5" min="0" value="0" oninput="calcAll()"> 개월
+    <span class="g-note"><span data-mode="out">6개월에 0.25점 (2027학년도 개정)</span><span data-mode="in">1년에 0.5점</span></span></div></div>
 
+  <!-- 6 -->
   <div class="g-item"><div class="g-head"><span class="no">6</span><span class="name">교육복지우선지원사업 업무담당</span><span class="cap">상한 2.0</span><span class="pts" id="p6">0.0</span></div>
     <div class="g-body">담당 경력 <input type="number" id="i6" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">6개월에 0.2점</span></div></div>
 
-  <div class="g-item"><div class="g-head"><span class="no">7</span><span class="name">한국어 학급 / 중도입국·외국인 학생 담임</span><span class="cap">상한 2.5 · 유리한 것 하나만</span><span class="pts" id="p7">0.0</span></div>
-    <div class="g-body">한국어 학급 담임 <input type="number" id="i7a" min="0" value="0" oninput="calcAll()"> 개월 (1년 0.5점)
-      &nbsp;/&nbsp; 중도입국·외국인 담임 <input type="number" id="i7b" min="0" value="0" oninput="calcAll()"> 개월 (1개월 0.1점)
-      <span class="g-note">중도입국·외국인은 취학(원) 후 최초 1년 담임 경력, 2025.3.1.자부터 적용 · 유리한 것 자동 반영</span></div></div>
+  <!-- 7 -->
+  <div class="g-item"><div class="g-head"><span class="no">7</span><span class="name">한국어 학급 / 중도입국·외국인 학생 담임</span>
+    <span class="cap"><span data-mode="out">상한 3.0</span><span data-mode="in">상한 2.5</span> · 유리한 것 하나만</span><span class="pts" id="p7">0.0</span></div>
+    <div class="g-body">
+      한국어 학급 담임 <input type="number" id="i7a" min="0" value="0" oninput="calcAll()"> 개월 (1년 0.5점)
+      &nbsp;/&nbsp; 중도입국·외국인 취학(원) 후 최초 1년 담임 <input type="number" id="i7b" min="0" value="0" oninput="calcAll()"> 개월 (1개월 0.1점)
+      <span data-mode="out">&nbsp;/&nbsp; 중도입국·외국인 비율 20% 이상 학급 담임 <input type="number" id="i7c" min="0" value="0" oninput="calcAll()"> 개월 (1개월 0.1점)</span>
+      <span class="g-note">최초 1년 담임은 2025.3.1.자부터<span data-mode="out">, 비율 20% 이상 학급 담임은 2026.3.1.자 근무경력부터 적용(2027학년도 신설)</span> · 유리한 것 자동 반영</span></div></div>
 
+  <!-- 8 -->
   <div class="g-item"><div class="g-head"><span class="no">8</span><span class="name">보직교사(교감미배치교 교무업무담당부장)</span><span class="cap">상한 2.0</span><span class="pts" id="p8">0.0</span></div>
     <div class="g-body">담당 경력 <input type="number" id="i8" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">6개월당 0.2점</span></div></div>
 
+  <!-- 9 -->
   <div class="g-item"><div class="g-head"><span class="no">9</span><span class="name">학교폭력 업무 담당 교사</span><span class="cap">상한 2.0</span><span class="pts" id="p9">0.0</span></div>
-    <div class="g-body">담당 경력 <input type="number" id="i9" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">교당 1명, 6개월당 0.2점</span></div></div>
+    <div class="g-body">담당 경력 <input type="number" id="i9" min="0" value="0" oninput="calcAll()"> 개월
+    <span class="g-note">6개월당 0.2점 · <span data-mode="out">36학급 미만 교당 1명, 36학급 이상 교당 2명(2026.3.1.자부터)</span><span data-mode="in">교당 1명</span></span></div></div>
 
+  <!-- 10 -->
   <div class="g-item"><div class="g-head"><span class="no">10</span><span class="name">교과전담교사 및 담임교사</span><span class="cap">상한 3.0</span><span class="pts" id="p10">0.0</span></div>
     <div class="g-body">교과전담 <input type="number" id="i10a" min="0" value="0" oninput="calcAll()"> 개월 (6개월 0.5점)
       &nbsp;+&nbsp; 담임 <input type="number" id="i10b" min="0" value="0" oninput="calcAll()"> 개월 (6개월 0.2점)
       <span class="g-note">담임 경력은 2024.3.1.자부터 적용 · 6개월 내 혼재 시 기간이 길거나 유리한 쪽 인정</span></div></div>
 
+  <!-- 11 -->
   <div class="g-item"><div class="g-head"><span class="no">11</span><span class="name">학교 소재 시·군 거주</span><span class="cap">상한 1.0</span><span class="pts" id="p11">0.0</span></div>
-    <div class="g-body">거주 기간(통산) <input type="number" id="i11" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">6개월에 0.2점 · 주민등록초본 기준</span></div></div>
+    <div class="g-body">거주 기간(통산) <input type="number" id="i11" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">6개월에 0.2점 · 주민등록초본 기준, 5개월 15일 이상은 6개월 인정</span></div></div>
 
+  <!-- 12 -->
   <div class="g-item"><div class="g-head"><span class="no">12</span><span class="name">초빙교사</span><span class="cap">상한 2.5</span><span class="pts" id="p12">0.0</span></div>
     <div class="g-body">초빙 근무경력 <input type="number" id="i12" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">1년에 0.5점</span></div></div>
 
+  <!-- 13 -->
   <div class="g-item"><div class="g-head"><span class="no">13</span><span class="name">특수교육지원센터 / 교육지원청 파견 보건교사</span><span class="cap">상한 3.0</span><span class="pts" id="p13">0.0</span></div>
     <div class="g-body">근무 경력 <input type="number" id="i13" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">1년에 1점</span></div></div>
 
-  <div class="g-item"><div class="g-head"><span class="no">14</span><span class="name">혁신학교 · 충남형 IB학교(후보·인증)</span><span class="cap">상한 2.0</span><span class="pts" id="p14">0.0</span></div>
+  <!-- 14 -->
+  <div class="g-item"><div class="g-head"><span class="no">14</span><span class="name">혁신(미래)학교 · 충남형 IB학교(후보·인증)</span><span class="cap">상한 2.0</span><span class="pts" id="p14">0.0</span></div>
     <div class="g-body">근무경력 <input type="number" id="i14" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">6개월에 0.2점 · 당해년도 초빙 경력과 중복 시 하나만 · IB학교는 2025.3.1.부터</span></div></div>
 
+  <!-- 15 -->
   <div class="g-item"><div class="g-head"><span class="no">15</span><span class="name">보건·사서·전문상담교사 (통합운영교·36학급 이상)</span><span class="cap">상한 2.0</span><span class="pts" id="p15">0.0</span></div>
     <div class="g-body">근무경력 <input type="number" id="i15" min="0" value="0" oninput="calcAll()"> 개월 <span class="g-note">1년에 0.5점 · 사서·전문상담은 2022.3.1.자부터</span></div></div>
 
+  <!-- 16 -->
   <div class="g-item"><div class="g-head"><span class="no">16</span><span class="name">다 출산자 및 입양자 (남·여 모두 적용)</span><span class="cap">상한 2.0</span><span class="pts" id="p16">0.0</span></div>
-    <div class="g-body"><label><input type="checkbox" id="i16" onchange="calcAll()"> 해당 (둘째 이상 출산 또는 입양 1명 이상)</label></div></div>
+    <div class="g-body"><label><input type="checkbox" id="i16" onchange="calcAll()"> 해당 (둘째 이상 출산 또는 입양 1명 이상)</label>
+    <span class="g-note" data-mode="out">2027학년도부터: 현임 시·군에서 출산·입양하여 초등학생 이하 자녀를 둔 경우, 최근 5년 이내 기간 제한 미적용</span></div></div>
 
-  <!-- 17 관내 전용: 개교학교 -->
+  <!-- 17 관외(2027 신설): 개교업무지원단 -->
+  <div class="g-item new27" data-mode="out"><div class="g-head"><span class="no">17</span><span class="name">신설개교학교 개교업무지원단</span><span class="tagnew">2027 신설</span><span class="cap">1.0</span><span class="pts" id="p17out">0.0</span></div>
+    <div class="g-body"><label><input type="checkbox" id="i17out" onchange="calcAll()"> 해당 (개교업무지원단 6개월 이상 참여)</label>
+    <span class="g-note">2026.3.1.자 근무경력부터 적용</span></div></div>
+
+  <!-- 18 관외(2027 신설): 교육전문직원 -->
+  <div class="g-item new27" data-mode="out"><div class="g-head"><span class="no">18</span><span class="name">교육전문직원 근무 경력</span><span class="tagnew">2027 신설</span><span class="cap">상한 3.0</span><span class="pts" id="p18out">0.0</span></div>
+    <div class="g-body">교육전문직원 근무 경력 <input type="number" id="i18out" min="0" value="0" oninput="calcAll()"> 개월
+    <span class="g-note">1년에 1점 · 교육전문직원→교사로 전직한 경우에 한함</span></div></div>
+
+  <!-- 17 관내 전용: 개교학교 전입 -->
   <div class="g-item" data-mode="in"><div class="g-head"><span class="no">17</span><span class="name">개교한 학교 전입 교원</span><span class="cap">2.0</span><span class="pts" id="p17in">0.0</span></div>
     <div class="g-body"><label><input type="checkbox" id="i17in" onchange="calcAll()"> 해당 (관내에서 개교 학교로 전입, 개교 당해 학년도 근무)</label>
     <span class="g-note">초등학교 개교 이후 개원한 병설유치원 근무 경력도 인정</span></div></div>
 
   <!-- 특례자 부가점 -->
   <div class="g-item">
-    <div class="g-head"><span class="no" data-mode="out">17</span><span class="no" data-mode="in">18</span><span class="name">특례자 부가점</span><span class="cap">유리한 것 하나만 인정</span><span class="pts" id="p18">0.0</span></div>
+    <div class="g-head"><span class="no" data-mode="out">19</span><span class="no" data-mode="in">18</span><span class="name">특례자 부가점</span><span class="cap">유리한 것 하나만 인정</span><span class="pts" id="pSp">0.0</span></div>
     <div class="g-body">
-      <select id="i17out" data-mode="out" onchange="calcAll()">
+      <select id="iSpOut" data-mode="out" onchange="calcAll()">
         <option value="0">해당 없음</option>
         <option value="1">부부 교직원 일방 전보 희망 (1.0) — ㉮㉯㉰지역 제외</option>
         <option value="1">국가유공자·독립유공자 (1.0)</option>
@@ -232,14 +268,14 @@
         <option value="1">부부 교원 동일지역 전보 희망 (1.0) — ㉮㉯㉰지역 제외</option>
         <option value="1">배우자 사망 교원 (1.0) — 18세 이하 자녀 양육</option>
         <option value="1">㉮㉯㉰지역 5년 미만 근무자의 ㉱㉲지역 희망 (1.0)</option>
-        <option value="1">중증장애 본인·부양 / 75세 이상 노부모 봉양 (1.0)</option>
+        <option value="1">장애의 정도가 심한 본인·부양 / 75세 이상 노부모 봉양 (1.0)</option>
       </select>
-      <select id="i17kin" data-mode="in" onchange="calcAll()">
+      <select id="iSpIn" data-mode="in" onchange="calcAll()">
         <option value="0">해당 없음</option>
         <option value="1">국가유공자·독립유공자 (1.0)</option>
         <option value="1">배우자 사망 교원 (1.0) — 만 18세 이하 자녀 양육</option>
         <option value="2">정원감축·과원·휴교·폐교로 근속 만기 전 전출 (2.0)</option>
-        <option value="1">중증장애 본인·부양 / 75세 이상 노부모 봉양 (1.0)</option>
+        <option value="1">장애의 정도가 심한 본인·부양 / 75세 이상 노부모 봉양 (1.0)</option>
       </select>
     </div>
   </div>
@@ -250,7 +286,7 @@
     <div class="g-body">
       2023.2.28.까지 근무 <input type="number" id="i19a" min="0" value="0" oninput="calcAll()"> 개월 (1년 0.2점)
       &nbsp;+&nbsp; 2023.3.1.부터 근무 <input type="number" id="i19b" min="0" value="0" oninput="calcAll()"> 개월 (6개월 0.5점)
-      <span class="g-note">현임교 3년(36개월) 이상 근무 시에만 인정(미만이면 0점 처리) · 대상 10교: 천안초, 천안중앙초, 천안남산초, 천안성정초, 천안청수초, 천안신안초, 천안봉명초, 천안봉서초, 천안신촌초, 천안서초(2023.2.28. 이전 경력은 천안서초 미해당) · 유치원교사 제외</span>
+      <span class="g-note">현임교 3년(36개월) 이상 근무 시에만 인정(미만이면 0점) · 대상 10교: 천안초, 천안중앙초, 천안남산초, 천안성정초, 천안청수초, 천안신안초, 천안봉명초, 천안봉서초, 천안신촌초, 천안서초(2023.2.28. 이전 경력은 천안서초 미해당) · 유치원교사 제외</span>
     </div>
   </div>
 
@@ -274,13 +310,27 @@
     <summary>인사지역 및 근속 년한 (별표1)</summary>
     <div class="dt-body">㉮ 천안 8년(시·읍 외 학교 경력 1년 이상 시 10년) · ㉯ 공주·논산·계룡·아산 10년 · ㉰ 금산 15년 ·
     ㉱ 보령·서산·당진·부여·홍성·예산 무제한 · ㉲ 서천·청양·태안 무제한<br>
-    ※ 이주배경학생 초밀집 학교 2년 이상 근무 시 근속 년한 2년 범위 내 제외 가능</div>
+    ※ 이주배경학생 초밀집 학교·<b>충남다우리학교</b>에서 2년 이상 근무 시 근속 년한 2년 범위 내 제외 가능(2027 개정)</div>
+  </details>
+  <details data-mode="out">
+    <summary>2027학년도 주요 변경 사항</summary>
+    <div class="dt-body">
+      · 영재교육 가산점 단위 변경: 1년 0.5점 → <b>6개월 0.25점</b><br>
+      · 7호 상한 2.5 → <b>3.0점</b>, 중도입국·외국인 비율 20% 이상 학급 담임(1개월 0.1점, 2026.3.1.~) 신설<br>
+      · <b>17호 신설개교학교 개교업무지원단(1.0)</b>, <b>18호 교육전문직원 경력(3.0)</b> 신설 → 특례자 부가점은 19호로 이동<br>
+      · 학교폭력 담당: 36학급 이상 교당 2명 인정(2026.3.1.~)<br>
+      · 다출산·입양: 현임 시·군 출산·입양 + 초등학생 이하 자녀 시 최근 5년 제한 미적용<br>
+      · 복식·통합학급: 재택순회교육 통합학급 제외(2026.3.1.~)<br>
+      · 체육: 충남장애인체육대회 인정(2027.3.1. 이후 실적)<br>
+      · 희망 전보: 정원감축 등으로 기필 전보된 교원은 직전학교+현임교 경력 합산 2년 이상이면 희망 가능<br>
+      · 장애의 정도가 심한 장애인 교사: 지역 만기 2년 이내 유예 신설
+    </div>
   </details>
   <details data-mode="in">
     <summary>천안 관내 전보 주요 조건</summary>
     <div class="dt-body">
       동일교 근속기간: 교사 5년(마급지 위례초는 3년) · 가급지 근속 8년(가급지 외 경력 1년 이상 시 10년)<br>
-      전보 희망: 현임교 실 근무 1년 이상(2년 미만은 가급적 제한) · 가급지 내 전보는 1회 한정(신설교·교육력 제고 학교·특수교육지원센터 전보 등 예외)<br>
+      전보 희망: 현임교 실 근무 1년 이상(2년 미만은 가급적 제한) · 가급지 내 전보는 1회 한정(신설교·교육력 제고 학교·특수교육지원센터 등 예외)<br>
       희망 학교는 동일 지역 내 3지망까지(장기근속자는 4지망, 4지망은 '기타')
     </div>
   </details>
@@ -393,7 +443,6 @@ function setMode(m){
   document.body.className = m==='out' ? 'm-out' : 'm-in';
   document.getElementById('tabOut').classList.toggle('on', m==='out');
   document.getElementById('tabIn').classList.toggle('on', m==='in');
-  // 급지·등급 체계가 달라 경력/입상 행 초기화
   document.getElementById('careerRows').innerHTML = '';
   document.getElementById('awardRows').innerHTML = '';
   addCareerRow();
@@ -447,9 +496,19 @@ function calcAll(){
   b.p2  = cap(num('i2')*1.0, 3.0);
   b.p3  = cap(unit(num('i3'),6,0.5), 3.0);
   b.p4  = cap(unit(num('i4'),12,0.5), 2.5);
-  b.p5  = cap(unit(num('i5'),12,0.5), 1.5);
+  // 5호: 관외(2027) 6개월 0.25 / 관내(2026) 1년 0.5
+  b.p5  = MODE==='out' ? cap(unit(num('i5'),6,0.25), 1.5) : cap(unit(num('i5'),12,0.5), 1.5);
   b.p6  = cap(unit(num('i6'),6,0.2), 2.0);
-  b.p7  = cap(Math.max(unit(num('i7a'),12,0.5), Math.min(num('i7b'),12)*0.1), 2.5);
+  // 7호: 관외 상한 3.0 (한국어/최초1년/비율20% 중 유리한 것), 관내 상한 2.5
+  if(MODE==='out'){
+    b.p7 = cap(Math.max(
+      unit(num('i7a'),12,0.5),
+      Math.min(num('i7b'),12)*0.1,
+      num('i7c')*0.1
+    ), 3.0);
+  } else {
+    b.p7 = cap(Math.max(unit(num('i7a'),12,0.5), Math.min(num('i7b'),12)*0.1), 2.5);
+  }
   b.p8  = cap(unit(num('i8'),6,0.2), 2.0);
   b.p9  = cap(unit(num('i9'),6,0.2), 2.0);
   b.p10 = cap(unit(num('i10a'),6,0.5)+unit(num('i10b'),6,0.2), 3.0);
@@ -459,8 +518,13 @@ function calcAll(){
   b.p14 = cap(unit(num('i14'),6,0.2), 2.0);
   b.p15 = cap(unit(num('i15'),12,0.5), 2.0);
   b.p16 = document.getElementById('i16').checked ? 2.0 : 0;
-  b.p17in = (MODE==='in' && document.getElementById('i17in').checked) ? 2.0 : 0;
-  b.p18 = parseFloat(document.getElementById(MODE==='out'?'i17out':'i17kin').value)||0;
+  if(MODE==='out'){
+    b.p17out = document.getElementById('i17out').checked ? 1.0 : 0;
+    b.p18out = cap(unit(num('i18out'),12,1.0), 3.0);
+  } else {
+    b.p17in = document.getElementById('i17in').checked ? 2.0 : 0;
+  }
+  b.pSp = parseFloat(document.getElementById(MODE==='out'?'iSpOut':'iSpIn').value)||0;
 
   for(const k in b){
     b[k] = Math.round(b[k]*100)/100;
@@ -472,7 +536,7 @@ function calcAll(){
   document.getElementById('bonusTotal').textContent = bonus.toFixed(1);
   document.getElementById('bonusRaw').textContent = rawBonus>10 ? `(상한 적용 전 ${rawBonus.toFixed(1)}점)` : '';
 
-  // ⑲ 교육력 제고 (관내, 10점 밖)
+  // 교육력 제고 (관내, 10점 밖)
   let extra = 0;
   if(MODE==='in'){
     const mA = num('i19a'), mB = num('i19b');
